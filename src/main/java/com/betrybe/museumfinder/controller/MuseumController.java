@@ -43,14 +43,12 @@ public class MuseumController {
 
   @PostMapping
   public ResponseEntity<MuseumDto> createMuseum(@RequestBody MuseumCreationDto newMuseum) {
-    try {
+
       Museum museum = ModelDtoConverter.dtoToModel(newMuseum);
       Museum createMuseum = museumService.createMuseum(museum);
       MuseumDto createMuseumDto = ModelDtoConverter.modelToDto(createMuseum);
       return ResponseEntity.status(HttpStatus.CREATED).body(createMuseumDto);
-    } catch (Exception e) {
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    }
+
   }
 
   /**
