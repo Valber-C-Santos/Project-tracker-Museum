@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 
+/**
+ * General Controller Advice.
+ */
+
 @ControllerAdvice
 public class GeneralControllerAdvice {
 

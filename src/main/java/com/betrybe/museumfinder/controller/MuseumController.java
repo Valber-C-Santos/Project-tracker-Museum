@@ -44,10 +44,10 @@ public class MuseumController {
   @PostMapping
   public ResponseEntity<MuseumDto> createMuseum(@RequestBody MuseumCreationDto newMuseum) {
 
-      Museum museum = ModelDtoConverter.dtoToModel(newMuseum);
-      Museum createMuseum = museumService.createMuseum(museum);
-      MuseumDto createMuseumDto = ModelDtoConverter.modelToDto(createMuseum);
-      return ResponseEntity.status(HttpStatus.CREATED).body(createMuseumDto);
+    Museum museum = ModelDtoConverter.dtoToModel(newMuseum);
+    Museum createMuseum = museumService.createMuseum(museum);
+    MuseumDto createMuseumDto = ModelDtoConverter.modelToDto(createMuseum);
+    return ResponseEntity.status(HttpStatus.CREATED).body(createMuseumDto);
 
   }
 
@@ -63,6 +63,18 @@ public class MuseumController {
     Coordinate coordinate = new Coordinate(latitude, longitude);
     Museum closestMuseum = museumService.getClosestMuseum(coordinate, maxDistance);
     MuseumDto museumDto = ModelDtoConverter.modelToDto(closestMuseum);
+
+    return ResponseEntity.ok(museumDto);
+  }
+
+  /**
+   * Find Id.
+   */
+
+  @GetMapping("/{id}")
+    public ResponseEntity<MuseumDto> findIdMuseum(Long id) {
+    Museum idMuseum = museumService.getMuseum(id);
+    MuseumDto museumDto = ModelDtoConverter.modelToDto(idMuseum);
 
     return ResponseEntity.ok(museumDto);
   }
